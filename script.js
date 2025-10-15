@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const floatingCta = document.querySelector('.floating-cta');
   const yearLabel = document.getElementById('year');
 
+
   // ==============================
   // Google Apps Script Web App URL
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbynNILmTYnsKtbRkqHf_9lXvN7DTLpT5QUyXcmUTGYmcLEti4UTb7WeoaYP2CSdhlV4/exec';
