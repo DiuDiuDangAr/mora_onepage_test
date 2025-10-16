@@ -37,31 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // 發送到 Apps Script
-        const apiUrl = 'https://script.google.com/macros/s/AKfycby5H_9T5q_csMjUSJZn6-EriFVAbj2aEAZnbFKioPipl2HDpc7bDDC2yymOJn2OeuDm/exec';
-        
-        // 選用:如果啟用 API Key,加入 header
-        const headers = {
-          'Content-Type': 'application/json',
-          // 'X-API-Key': 'mora_secret_key_2024' // 如果 Apps Script 啟用 API Key,取消註解
-        };
-        
-        const response = await fetch(apiUrl, {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzrcaEXTKWxoXdN_jNDk2ldbrr-F3S2oedCwgR-DS3zeB6UZ4_1xKODMseUGl-fdo7p/exec', {
           method: 'POST',
-          headers: headers,
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify(payload),
-          mode: 'cors' // 改用 cors 模式,因為我們已經設定好 CORS headers
+          mode: 'no-cors' // 重要:因為 Apps Script 的 CORS 限制
         });
-        
-        // 檢查回應
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || '提交失敗');
-        }
-        
-        const result = await response.json();
-        if (result.status !== 'success') {
-          throw new Error(result.message || '提交失敗');
-        }
 
         // 注意:no-cors 模式下無法讀取 response,但資料會送達
         successField.textContent = '✓ 已收到您的需求,顧問將於 24 小時內與您聯繫。';
